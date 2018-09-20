@@ -1,0 +1,134 @@
+body {
+    widows: 100vw;
+    height: 100vh;
+}
+
+.fm {
+    width: 600PX;
+    border-radius: 8px;
+    background: #888;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 160px;
+    box-shadow: 0px 8px 31px -3px rgba(0, 0, 0, 0.73);
+}
+
+.fm>.nav>.circle {
+    margin-left: 16px;
+}
+
+.fm>.nav>.circle>span {
+    width: 16px;
+    height: 16px;
+    border: 1px solid rgb(7, 109, 100);
+    background: #00B6A8;
+    border-radius: 50%;
+    display: block;
+    float: left;
+    margin-left: 8px;
+    margin-top: 27px;
+}
+
+.fm>.nav>.logo {
+    position: relative;
+    right: 16px;
+    top: 16px;
+}
+
+.fm>.nav .icon {
+    font-size: 24px;
+    position: absolute;
+    top: -36px;
+    right: 8px;
+
+}
+
+.fm .nav {
+    height: 70px;
+    background: #07A39F;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+
+}
+
+.fm .selector {
+    height: 70px;
+    background: #3A3C3A;
+    text-align: center;
+}
+
+.selector ul {
+    display: inline-block;
+}
+
+.selector ul svg {
+    float: left;
+    font-size: 32px;
+    margin: 20px;
+    color: aqua;
+}
+
+
+.selector ul li {
+    font-weight: bold;
+    font-size: 22px;
+    float: left;
+    margin: 10px;
+    margin: 19px 12px;
+    cursor: default;
+}
+
+.selector ul li:nth-child(3) {
+    color: #888;
+    font-size: 26px;
+    margin: 14px 12px;
+}
+
+.secector ui svg {
+    color: red;
+}
+
+.fm .main {
+    height: 250px;
+    display: block;
+    background: #888;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.main .left {
+    position: relative;
+    width: 40%;
+    height: 100%;
+    float: left;
+}
+
+.main .right{
+    float: right;
+    margin-right:250px;
+    margin-top:32px;
+}
+.main .right h3{
+    color: rgb(231, 218, 218);
+    font-family: KaiTi;
+}
+
+.main .right p{
+    margin-top: 12px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+.main img {
+    position: absolute;
+    margin-top: 35px;
+    margin-left: 35px;
+}
+
+
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+}
