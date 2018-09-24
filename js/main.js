@@ -22,18 +22,23 @@ var footer = {
         this.$rightBtn = this.$footer.find('.buttonRight')
         this.isToEnd = false
         this.isToStart = true
+        this.isAnimate = false //动画加载过程中,不响应
+
         this.bind()
         this.render()
     },
     bind: function () {
         var _this = this
-        this.$rightBtn.on('click', function () {
+        _this.$rightBtn.on('click', function () {
+            if(_this.isAnimate)return
             var liWidth = _this.$box.find('li').outerWidth(true)
             var rowCount = Math.floor(_this.$box.width() / liWidth)
             if (!_this.isToEnd) {
+                _this.isAnimate = true
                 _this.$ul.animate({
                     left: '-=' + rowCount * liWidth
                 }, 400,function(){
+                    _this.isAnimate = false
                     _this.isToStart = false
                     if( parseFloat(_this.$box.width())-parseFloat(_this.$ul.css('left')) >= parseFloat(_this.$ul.css('width')) ){
                         _this.isToEnd = true
@@ -42,13 +47,16 @@ var footer = {
             }
         })
 
-        this.$leftBtn.on('click',function(){
+        _this.$leftBtn.on('click',function(){
+            if(_this.isAnimate)return
             var liWidth = _this.$box.find('li').outerWidth(true)
             var rowCount = Math.floor(_this.$box.width() / liWidth)
             if (!_this.isToStart) {
+                _this.isAnimate = true
                 _this.$ul.animate({
                     left: '+=' + rowCount * liWidth
                 }, 400,function(){
+                    _this.isAnimate = false
                     _this.isToEnd = false
                     if( parseFloat(_this.$ul.css('left')) >=50){
                         _this.isToStart = true
@@ -57,10 +65,13 @@ var footer = {
             }
         })
 
-        this.$footer.on('click','li',function(){
+        _this.$footer.on('click','li',function(){
             $(this).addClass('active')
             .siblings().removeClass('active')
-            EventCenter.fire('select-albumn',$(this).attr('data-channels-id'))
+            EventCenter.fire('select-albumn',{
+                channelId:$(this).attr('data-channels-id'),
+                channelName:$(this).attr('data-channels-name')
+            })
         })
     },
     render() {
@@ -78,7 +89,7 @@ var footer = {
         var html = ''
 
         channels.forEach(function (channel) {
-            html += '<li data-channels-id=' + channel.channel_id + '>' +
+            html += '<li data-channels-id=' + channel.channel_id + ' data-channels-name='+ channel.name +'>' +
                 '<div class="cover" style="background-image:url(' + channel.cover_small + ')"></div>' +
                 '<h3>' + channel.name + '</h3>' +
                 '</li>'
@@ -95,16 +106,42 @@ var footer = {
     }
 }
 
-var app = {
+var Fm = {
     init: function(){
+        this.$container = $('.page-music')
+        this.audio = new Audio()
+        this.audio.autoplay = true
+
         this.bind()
     },
     bind:function(){
-        EventCenter.on('select-albumn',function(e,data){
-            console.log('select',data)
+        var _this = this
+        EventCenter.on('select-albumn',function(e,channelObj){
+            _this.channelId = channelObj.channelId
+            _this.channelName = channelObj.channelName
+            _this.loadMusic(function(){
+                _this.setMusic()
+            })
         })
+    },
+    loadMusic(callback){
+        var _this = this
+        $.getJSON('//jirenguapi.applinzi.com/fm/getSong.php',{channel:this.channelId})
+        .done(function(ret){
+            _this.song = ret['song'][0]
+            callback()
+            console.log(_this.song)
+        })
+    },
+    setMusic(){
+        this.audio.src = this.song.url
+        $('.bg').css('background-image','url('+this.song.picture+')')
+        this.$container.find('.picture').css('background-image','url('+this.song.picture+')')
+        this.$container.find('.right h1').text(this.song.title)
+        this.$container.find('.right .name').text(this.song.artist)
+        this.$container.find('.right .tag').text(this.channelName)
     }
 }
 footer.init(footer)
-app.init()
+Fm.init()
 

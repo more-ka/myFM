@@ -25,8 +25,8 @@ main {
     left: -10px;
     right: -10px;
     z-index: -1;
-    background: url( //timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537030676108&di=8cbc7736e62e4ee6c13481f7e4665890&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F03087bf40ad162d93df71c261adfa9ec8a13cdeb.jpg);
-        filter: blur(1px);
+    background-image: url( //timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537030676108&di=8cbc7736e62e4ee6c13481f7e4665890&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F03087bf40ad162d93df71c261adfa9ec8a13cdeb.jpg);
+        filter: blur(4px);
     background-size: cover;
 }
 
@@ -47,6 +47,35 @@ main {
 .card {
     margin-left: 36vh;
     margin-right: 8vh;
+}
+
+.layout {
+    margin: 0 auto;
+    width: 600px;
+}
+
+@media (min-width: 700px) {
+    .layout {
+        width: 600px;
+    }
+}
+
+@media (min-width: 900px) {
+    .layout {
+        width: 800px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .layout {
+        width: 900px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .layout {
+        width: 1100px;
+    }
 }
 
 img {
@@ -162,38 +191,37 @@ img {
 }
 
 footer {
-    height: 24vh;
+    height: 36vh;
     background: rgb(0, 0, 0, 0.2);
     overflow: hidden;
 }
 
-footer .box {
-    margin-top: 1vh;
-    width: 136vh;
-    height: 20vh;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+footer .layout {
     position: relative;
-    ovh
 }
 
-footer .box .buttonLeft {
+footer .box {
+    height: 24vh;
+    overflow: hidden;
+    text-align: center;
+}
+
+footer .buttonLeft {
     position: absolute;
     left: -12vh;
     font-size: 8vh;
-    margin-top: 5vh;
+    margin-top: 8vh;
     color: #888;
     opacity: 0;
     cursor: pointer;
 }
 
 
-footer .box .buttonRight {
+footer .buttonRight {
     position: absolute;
-    right: -12vh;
     font-size: 8vh;
-    margin-top: 5vh;
+    right: -12vh;
+    margin-top: 8vh;
     color: #888;
     opacity: 0;
     cursor: pointer;
@@ -209,6 +237,12 @@ footer:hover .buttonRight {
     opacity: 1;
 }
 
+footer ul {
+    margin-top: 1vh;
+    position: relative;
+    left: 0;
+}
+
 footer li {
     background-size: cover;
     background-position: center center;
@@ -219,9 +253,13 @@ footer li {
     margin: 2vh 2vh 0 2vh;
     cursor: pointer;
 }
-footer li:hover {
-    box-shadow: 0 0 0.5vh 0.5vh rgba(255,255,255,0.8);
+footer li.active{
+    box-shadow: 0 0 0.5vh 0.5vh rgba(255, 255, 255, 0.8);
 }
+footer li:hover {
+    box-shadow: 0 0 0.5vh 0.5vh rgba(255, 255, 255, 0.8);
+}
+
 footer li .cover {
     background-size: cover;
     background-position: center center;
