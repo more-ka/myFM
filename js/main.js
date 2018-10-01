@@ -76,7 +76,7 @@ var footer = {
     },
     render() {
         var _this = this
-        $.getJSON('//api.jirengu.com/fm/getChannels.php') //jQuery中的$.getJSON( )方法函数主要用来从服务器加载json编码的数据
+        $.getJSON('//jirenguapi.applinzi.com/fm/getChannels.php') //jQuery中的$.getJSON( )方法函数主要用来从服务器加载json编码的数据
             .done(function (ret) {
                 _this.renderFooter(ret.channels)
             })
