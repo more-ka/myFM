@@ -45,7 +45,7 @@ main {
 }
 
 .card {
-    margin-left: 36vh;
+    margin-left: 28vh;
     margin-right: 8vh;
 }
 
@@ -124,8 +124,9 @@ img {
 }
 
 .right .i {
-    margin-top: 6vh;
+    margin-top: 8vh;
     font-size: 3vh;
+    margin-right: 10vh;
 }
 
 .right ul {
@@ -146,6 +147,7 @@ img {
 }
 .areaBar {
     width: auto;
+    margin-right:18%;
     display: flex;
     align-items: center;
     margin-top: 6vh;
@@ -178,7 +180,7 @@ img {
 }
 
 .right .name {
-    margin-top: 2vh;
+    margin-top: 4vh;
     font-size: 3vh;
     font-family: KaiTi;
 }
