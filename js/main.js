@@ -40,7 +40,7 @@ var footer = {
             },400,function(){
                 _this.isAnimate = false
                 _this.isToStart = false 
-                if(parseFloat(_this.$box.width())-parseFloat(_this.$ul.css('left'))>=parseFloat(_this.$ul.width())){
+                if(parseFloat(_this.$box.width())-(parseFloat(_this.$ul.css('left')))>=parseFloat(_this.$ul.width())){
                     _this.isToEnd = true
                 }
             })
