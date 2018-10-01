@@ -30,10 +30,10 @@ var footer = {
     bind: function () {
         var _this = this
         _this.$rightBtn.on('click',function(){
-            if(this.isAnimate)return
+            if(_this.isAnimate)return
             var liWidth = _this.$box.find('li').outerWidth(true)
             var rowCount = Math.floor(_this.$box.width() / liWidth)
-            if(!this.isToEnd){
+            if(!_this.isToEnd){
                 _this.isAnimate = true
                 _this.$ul.animate({
                 left: '-=' + rowCount * liWidth
