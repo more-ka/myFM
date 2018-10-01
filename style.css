@@ -1,0 +1,270 @@
+/*filter: blur(4px);*/
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+html,
+body,
+section {
+    height: 100%;
+    overflow: hidden;
+}
+
+main {
+    margin-top: 12vh;
+    height: calc(100% - 36vh);
+}
+
+.bg {
+    position: absolute;
+    top: -10px;
+    bottom: -50px;
+    left: -10px;
+    right: -10px;
+    z-index: -1;
+    background-image: url( //timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537030676108&di=8cbc7736e62e4ee6c13481f7e4665890&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F03087bf40ad162d93df71c261adfa9ec8a13cdeb.jpg);
+        filter: blur(4px);
+    background-size: cover;
+}
+
+.bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.left {
+    float: left;
+}
+
+.card {
+    margin-left: 28vh;
+    margin-right: 8vh;
+}
+
+.layout {
+    margin: 0 auto;
+    width: 600px;
+}
+
+@media (min-width: 700px) {
+    .layout {
+        width: 600px;
+    }
+}
+
+@media (min-width: 900px) {
+    .layout {
+        width: 800px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .layout {
+        width: 900px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .layout {
+        width: 1100px;
+    }
+}
+
+img {
+    background-image: url(../img/cd.jpg);
+    background-size: cover;
+    height: 40vh;
+    width: 40vh;
+    background-position: center center;
+}
+
+.card > .left > .buttons {
+    display: flex;
+    margin-top: 4vh;
+}
+
+.card > .left > .buttons > .iconfont {
+    font-size: 5vh;
+    flex: 1;
+    text-align: center;
+}
+
+.card > .left > .buttons > .iconfont {
+    color: rgb(247, 243, 243, 0.5);
+    transition: color 0.2s;
+    cursor: pointer;
+}
+
+.card > .left > .buttons .iconfont:hover {
+    color: rgba(250, 250, 250);
+}
+
+.card > .right {
+    margin-left: 60vh;
+    color: #fff;
+}
+
+.right .tag {
+    font-size: 3vh;
+    background: rgb(28, 184, 150);
+    padding: 0em 0.8em;
+}
+
+.right h1 {
+    font-size: 6vh;
+    padding: 15px 0;
+}
+
+.right .i {
+    margin-top: 8vh;
+    font-size: 3vh;
+    margin-right: 10vh;
+}
+
+.right ul {
+    display: flex;
+}
+
+.right ul li {
+    flex: 1;
+    margin-right: 2vh;
+    margin-left: 16vh;
+}
+
+.right ul li:nth-child(1) {
+    margin-left: 0;
+}
+.right ul span{
+    margin-right:1vh;
+}
+.areaBar {
+    width: auto;
+    margin-right:18%;
+    display: flex;
+    align-items: center;
+    margin-top: 6vh;
+
+}
+
+.bar {
+    height: 0.8vh;
+    width: 70vh;
+    flex: 1;
+    border-radius: 0.5vh;
+    background: rgba(207, 206, 206, 0.4);
+    position: relative;
+    float: left;
+
+}
+
+.insideBar {
+    height: 0.8vh;
+    width: 10%;
+    border-radius: 0.5vh;
+    transition: width .8s;
+    background: white;
+    position: absolute;
+}
+
+.time {
+
+    margin-left: 1vh;
+}
+
+.right .name {
+    margin-top: 2vh;
+    font-size: 3vh;
+    font-family: KaiTi;
+}
+
+.right .lyric {
+    margin-top: 2vh;
+}
+
+footer {
+    height: 36vh;
+    background: rgba(202, 191, 191, 0.3);
+    overflow: hidden;
+}
+
+footer .layout {
+    position: relative;
+}
+
+footer .box {
+    height: 24vh;
+    overflow: hidden;
+    text-align: center;
+}
+
+footer .buttonLeft {
+    position: absolute;
+    left: -12vh;
+    font-size: 8vh;
+    margin-top: 8vh;
+    color: #888;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+footer .buttonRight {
+    position: absolute;
+    font-size: 8vh;
+    right: -12vh;
+    margin-top: 8vh;
+    color: #888;
+    opacity: 0;
+    cursor: pointer;
+}
+
+footer .buttonLeft:hover,
+footer .buttonRight:hover {
+    color: rgb(248, 252, 248);
+}
+
+footer:hover .buttonLeft,
+footer:hover .buttonRight {
+    opacity: 1;
+}
+
+footer ul {
+    margin-top: 1vh;
+    position: relative;
+    left: 0;
+}
+
+footer li {
+    background-size: cover;
+    background-position: center center;
+    float: left;
+    height: 18vh;
+    width: 20vh;
+    margin-right: 8vh;
+    margin: 2vh 2vh 0 2vh;
+    cursor: pointer;
+}
+footer li.active{
+    box-shadow: 0 0 0.5vh 0.5vh rgba(255, 255, 255, 0.8);
+}
+footer li:hover {
+    box-shadow: 0 0 0.5vh 0.5vh rgba(255, 255, 255, 0.8);
+}
+
+footer li .cover {
+    background-size: cover;
+    background-position: center center;
+    height: 14vh;
+}
+
+footer h3 {
+    padding-top: 1vh;
+}
