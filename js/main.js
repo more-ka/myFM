@@ -76,7 +76,7 @@ var footer = {
     },
     render() {
         var _this = this
-        $.getJSON('http://api.jirengu.com/fm/getChannels.php') //jQuery中的$.getJSON( )方法函数主要用来从服务器加载json编码的数据
+        $.getJSON('//api.jirengu.com/fm/getChannels.php') //jQuery中的$.getJSON( )方法函数主要用来从服务器加载json编码的数据
             .done(function (ret) {
                 _this.renderFooter(ret.channels)
             })
@@ -152,7 +152,7 @@ var Fm = {
     },
     loadMusic(){
         var _this = this
-        $.getJSON('jirenguapi.applinzi.com/fm/getSong.php',{channel:this.channelId})
+        $.getJSON('//jirenguapi.applinzi.com/fm/getSong.php',{channel:this.channelId})
         .done(function(ret){
             _this.song = ret['song'][0]
             _this.setMusic()
@@ -161,7 +161,7 @@ var Fm = {
     },
     loadLyric(){
         var _this = this
-        $.getJSON('jirenguapi.applinzi.com/fm/getLyric.php',{sid:this.song.sid})
+        $.getJSON('//jirenguapi.applinzi.com/fm/getLyric.php',{sid:this.song.sid})
         .done(function(ret){
             var lyric = ret.lyric
             var lyricObj = {}
