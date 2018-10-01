@@ -29,22 +29,22 @@ var footer = {
     },
     bind: function () {
         var _this = this
-        _this.$rightBtn.on('click', function () {
-            if(_this.isAnimate)return
+        _this.$rightBtn.on('click',function(){
+            if(this.isAnimate)return
             var liWidth = _this.$box.find('li').outerWidth(true)
             var rowCount = Math.floor(_this.$box.width() / liWidth)
-            if (!_this.isToEnd) {
+            if(!this.isToEnd){
                 _this.isAnimate = true
                 _this.$ul.animate({
-                    left: '-=' + rowCount * liWidth
-                }, 400,function(){
-                    _this.isAnimate = false
-                    _this.isToStart = false
-                    if( parseFloat(_this.$box.width())-parseFloat(_this.$ul.css('left')) >= parseFloat(_this.$ul.css('width')) ){
-                        _this.isToEnd = true
-                    }
-                })
-            }
+                left: '-=' + rowCount * liWidth
+            },400,function(){
+                _this.isAnimate = false
+                _this.isToStart = false 
+                if(parseFloat(_this.$box.width())-parseFloat(_this.$ul.css('left'))>=parseFloat(_this.$ul.width())){
+                    _this.isToEnd = true
+                }
+            })
+        }
         })
 
         _this.$leftBtn.on('click',function(){
@@ -58,7 +58,7 @@ var footer = {
                 }, 400,function(){
                     _this.isAnimate = false
                     _this.isToEnd = false
-                    if( parseFloat(_this.$ul.css('left')) >=50){
+                    if( parseFloat(_this.$ul.css('left')) >=0){
                         _this.isToStart = true
                     }
                 })
@@ -85,7 +85,6 @@ var footer = {
             })
     },
     renderFooter: function (channels) {
-        console.log(channels)
         var html = ''
 
         channels.forEach(function (channel) {
@@ -123,14 +122,60 @@ var Fm = {
                 _this.setMusic()
             })
         })
+
+        this.$container.find('.btn-play').on('click',function(){
+            var $btn = $(this)
+            if($btn.hasClass('icon-play')){
+                $btn.removeClass('icon-play').addClass('icon-pause')
+                _this.audio.play()
+            }else{
+                $btn.removeClass('icon-pause').addClass('icon-play')
+                _this.audio.pause()
+            }
+        })
+
+        this.$container.find('.btn-next').on('click',function(){
+            _this.loadMusic()
+        })
+        this.audio.addEventListener('play',function(){
+            clearInterval(_this.statusClock)
+            _this.statusClock = setInterval(function(){
+                _this.updataStatus()
+            },1000)
+        })
+        this.audio.addEventListener('pause',function(){
+            clearInterval(_this.statusClock)
+        })
+        this.audio.addEventListener('ended',function(){
+            _this.loadMusic()
+        })
     },
-    loadMusic(callback){
+    loadMusic(){
         var _this = this
         $.getJSON('//jirenguapi.applinzi.com/fm/getSong.php',{channel:this.channelId})
         .done(function(ret){
             _this.song = ret['song'][0]
-            callback()
-            console.log(_this.song)
+            _this.setMusic()
+            _this.loadLyric()
+        })
+    },
+    loadLyric(){
+        var _this = this
+        $.getJSON('//jirenguapi.applinzi.com/fm/getLyric.php',{sid:this.song.sid})
+        .done(function(ret){
+            var lyric = ret.lyric
+            var lyricObj = {}
+            window.lyric = lyric
+            lyric.split('\n').forEach(function(line){
+                var times = line.match(/\d{2}:\d{2}/g)
+                var str = line.replace(/\[.+?\]/g,'')
+                if(Array.isArray(times)){
+                    times.forEach(function(time){
+                        lyricObj[time] = str
+                    })
+                }
+            })
+            _this.lyricObj = lyricObj
         })
     },
     setMusic(){
@@ -140,6 +185,18 @@ var Fm = {
         this.$container.find('.right h1').text(this.song.title)
         this.$container.find('.right .name').text(this.song.artist)
         this.$container.find('.right .tag').text(this.channelName)
+        this.$container.find('.btn-play').removeClass('icon-play').addClass('icon-pause')
+    },
+    updataStatus(){
+        var min = Math.floor(this.audio.currentTime/60)
+        var second = Math.floor(this.audio.currentTime%60)+''
+        second = second.length === 2?second:'0'+second
+        this.$container.find('.time').text(min+':'+second)
+        this.$container.find('.insideBar').css({width:this.audio.currentTime/this.audio.duration*100+'%'})
+        var line = this.lyricObj['0'+min+':'+second]
+        if(line){
+        this.$container.find('.lyric').text(line)
+        }
     }
 }
 footer.init(footer)

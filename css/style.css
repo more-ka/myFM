@@ -91,19 +91,19 @@ img {
     margin-top: 4vh;
 }
 
-.card > .left > .buttons > .icon {
+.card > .left > .buttons > .iconfont {
     font-size: 5vh;
     flex: 1;
     text-align: center;
 }
 
-.card > .left > .buttons > .icon > use {
+.card > .left > .buttons > .iconfont {
     color: rgb(247, 243, 243, 0.5);
     transition: color 0.2s;
     cursor: pointer;
 }
 
-.card > .left > .buttons .icon > use:hover {
+.card > .left > .buttons .iconfont:hover {
     color: rgba(250, 250, 250);
 }
 
@@ -124,31 +124,28 @@ img {
 }
 
 .right .i {
-    display: flex;
     margin-top: 6vh;
     font-size: 3vh;
 }
 
-.right .i {
-    display: flex;
-
-}
-
 .right ul {
-    flex: 1;
+    display: flex;
 }
 
-.right ul svg {
-    margin-right: 1vh;
+.right ul li {
+    flex: 1;
+    margin-right: 2vh;
     margin-left: 16vh;
 }
 
-.right ul svg:nth-child(1) {
+.right ul li:nth-child(1) {
     margin-left: 0;
 }
-
+.right ul span{
+    margin-right:1vh;
+}
 .areaBar {
-    width: 80vh;
+    width: auto;
     display: flex;
     align-items: center;
     margin-top: 6vh;
@@ -170,7 +167,7 @@ img {
     height: 0.8vh;
     width: 10%;
     border-radius: 0.5vh;
-
+    transition: width .8s;
     background: white;
     position: absolute;
 }
@@ -186,13 +183,13 @@ img {
     font-family: KaiTi;
 }
 
-.right .text {
+.right .lyric {
     margin-top: 2vh;
 }
 
 footer {
     height: 36vh;
-    background: rgb(0, 0, 0, 0.2);
+    background: rgba(202, 191, 191, 0.3);
     overflow: hidden;
 }
 
