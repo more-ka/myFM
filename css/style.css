@@ -116,11 +116,13 @@ img {
     font-size: 3vh;
     background: rgb(28, 184, 150);
     padding: 0em 0.8em;
+    cursor:default;
 }
 
 .right h1 {
     font-size: 6vh;
     padding: 15px 0;
+    cursor:default;
 }
 
 .right .i {
@@ -137,6 +139,7 @@ img {
     flex: 1;
     margin-right: 2vh;
     margin-left: 16vh;
+    cursor:default;
 }
 
 .right ul li:nth-child(1) {
@@ -144,6 +147,7 @@ img {
 }
 .right ul span{
     margin-right:1vh;
+    font-size: 4vh;
 }
 .areaBar {
     width: auto;
@@ -175,18 +179,23 @@ img {
 }
 
 .time {
-
-    margin-left: 1vh;
+    font-size: 3vh;
+    margin-left: 4vh;
+    cursor:default;
 }
 
 .right .name {
     margin-top: 4vh;
     font-size: 3vh;
     font-family: KaiTi;
+    cursor:default;
 }
 
 .right .lyric {
     margin-top: 2vh;
+    font-size: 3vh;
+    color: aquamarine;
+    cursor: pointer;
 }
 
 footer {
@@ -201,8 +210,8 @@ footer .layout {
 
 footer .box {
     height: 24vh;
-    overflow: hidden;
     text-align: center;
+    overflow: hidden;
 }
 
 footer .buttonLeft {
