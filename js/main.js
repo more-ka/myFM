@@ -110,9 +110,24 @@ var Fm = {
         this.$container = $('.page-music')
         this.audio = new Audio()
         this.audio.autoplay = true
+        
 
         this.bind()
+        this.x()
     },
+    x:function(){
+        var _this= this
+        _this.$container.find('.bar').on('click',function(){
+        var x = event.offsetX
+        var barWidth = _this.$container.find('.bar').width()
+        var woo = Math.floor(x/barWidth*100)
+        _this.$container.find('.insideBar').css({
+            width: woo
+        })
+        wo = Math.floor(Math.floor(_this.audio.duration )*woo/100)
+        console.log(wo)
+        _this.audio.currentTime = wo
+    })},
     bind:function(){
         var _this = this
         EventCenter.on('select-albumn',function(e,channelObj){
@@ -122,18 +137,27 @@ var Fm = {
                 _this.setMusic()
             })
         })
-
-        this.$container.find('.btn-play').on('click',function(){
-            var $btn = $(this)
-            if($btn.hasClass('icon-play')){
-                $btn.removeClass('icon-play').addClass('icon-pause')
+        
+        _this.$container.find('.btn-play').on('click',function(){
+            if($(this).hasClass('icon-play')){
+                $(this).removeClass('icon-play').addClass('icon-pause')
                 _this.audio.play()
             }else{
-                $btn.removeClass('icon-pause').addClass('icon-play')
+                $(this).removeClass('icon-pause').addClass('icon-play')
                 _this.audio.pause()
             }
         })
-
+/*
+_this.$container.find('.btn-play').on('click',function(){
+            if($(this).hasClass('icon-play')){
+                $(this).removeClass('icon-play').addClass('icon-pause')
+                _this.audio.play()
+            }else{
+                $(this).removeaClass('icon-pause').addClass('icon-play')
+                _this.audio.pause()
+            }
+        })
+*/
         this.$container.find('.btn-next').on('click',function(){
             _this.loadMusic()
         })
@@ -201,4 +225,3 @@ var Fm = {
 }
 footer.init(footer)
 Fm.init()
-

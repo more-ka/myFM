@@ -159,7 +159,7 @@ img {
 }
 
 .bar {
-    height: 0.8vh;
+    height: 1vh;
     width: 70vh;
     flex: 1;
     border-radius: 0.5vh;
@@ -170,10 +170,10 @@ img {
 }
 
 .insideBar {
-    height: 0.8vh;
+    height: 1vh;
     width: 10%;
     border-radius: 0.5vh;
-    transition: width .8s;
+    transition: width .1s;
     background: white;
     position: absolute;
 }
