@@ -46,7 +46,7 @@ var footer = {
             })
         }
         })
-
+        
         _this.$leftBtn.on('click',function(){
             if(_this.isAnimate)return
             var liWidth = _this.$box.find('li').outerWidth(true)
@@ -110,10 +110,21 @@ var Fm = {
         this.$container = $('.page-music')
         this.audio = new Audio()
         this.audio.autoplay = true
+        this.$red = $('.selectorColor .red')
+        this.$black = $('.selectorColor .black')
+        this.$green = $('.selectorColor .green')
+        this.$lyric = $('.lyric')
+        this.$aquamarine = $('.selectorColor .aquamarine')
+
         
 
         this.bind()
         this.x()
+        this.setColor()
+        this.setColor1()
+        this.setColor2()
+        this.setColor3()
+
     },
     x:function(){
         var _this= this
@@ -127,6 +138,7 @@ var Fm = {
         wo = Math.floor(Math.floor(_this.audio.duration )*woo/100)
         console.log(wo)
         _this.audio.currentTime = wo
+        _this.audio.play()
     })},
     bind:function(){
         var _this = this
@@ -181,6 +193,7 @@ _this.$container.find('.btn-play').on('click',function(){
             _this.song = ret['song'][0]
             _this.setMusic()
             _this.loadLyric()
+            console.log('123')
         })
     },
     loadLyric(){
@@ -189,7 +202,6 @@ _this.$container.find('.btn-play').on('click',function(){
         .done(function(ret){
             var lyric = ret.lyric
             var lyricObj = {}
-            window.lyric = lyric
             lyric.split('\n').forEach(function(line){
                 var times = line.match(/\d{2}:\d{2}/g)
                 var str = line.replace(/\[.+?\]/g,'')
@@ -219,8 +231,34 @@ _this.$container.find('.btn-play').on('click',function(){
         this.$container.find('.insideBar').css({width:this.audio.currentTime/this.audio.duration*100+'%'})
         var line = this.lyricObj['0'+min+':'+second]
         if(line){
-        this.$container.find('.lyric').text(line)
+        this.$container.find('.lyric p').text(line)
         }
+    },
+    setColor(){
+        this.$black.click(function(){
+            this.$lyric.css({'color':'black'})
+        }.bind(this))
+    },
+    setColor1(){
+        this.$red.click(function(){
+            this.$lyric.css({'color':'rgb(253, 18, 18)'})
+        }.bind(this))
+        console.log('red')
+
+    },
+  
+    setColor2(){
+        this.$green.click(function(){
+            this.$lyric.css({'color':'rgb(17, 236, 17)'})
+        }.bind(this))
+        console.log('green')
+
+    },
+    setColor3(){
+        this.$aquamarine.click(function(){
+            this.$lyric.css({'color':'aquamarine'})
+        }.bind(this))
+        console.log('aquamarine')
     }
 }
 footer.init(footer)

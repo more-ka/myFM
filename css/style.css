@@ -26,7 +26,7 @@ main {
     right: -10px;
     z-index: -1;
     background-image: url( //timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537030676108&di=8cbc7736e62e4ee6c13481f7e4665890&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F03087bf40ad162d93df71c261adfa9ec8a13cdeb.jpg);
-        filter: blur(4px);
+        filter: blur(5px);
     background-size: cover;
 }
 
@@ -37,7 +37,7 @@ main {
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .left {
@@ -163,10 +163,10 @@ img {
     width: 70vh;
     flex: 1;
     border-radius: 0.5vh;
-    background: rgba(207, 206, 206, 0.4);
+    background: rgba(207, 206, 206, 0.3);
     position: relative;
     float: left;
-
+    cursor: pointer;
 }
 
 .insideBar {
@@ -194,8 +194,42 @@ img {
 .right .lyric {
     margin-top: 2vh;
     font-size: 3vh;
+    height: 4vh;
     color: aquamarine;
     cursor: pointer;
+    position: relative;
+}
+
+
+.right .selectorColor{
+    position: absolute;
+    top: -4vh;
+    left:40%;
+}
+
+.right .lyric .selectorColor > li{
+    float: left;
+    margin-right:2vh;
+    width: 3vh;
+    height: 3vh;
+    border-radius: 50%;
+    margin-bottom: 1vh;
+    background: rgb(17, 236, 17);
+}
+.right .lyric .selectorColor .aquamarine{
+    background: aquamarine;
+}
+.right .lyric .selectorColor .red{
+    background: rgb(253, 18, 18);
+}
+.right .lyric .selectorColor .black{
+    background: black;
+}
+.right .lyric .selectorColor .green{
+    background: rgb(8, 243, 8);
+}
+.lyric p:hover + ol {
+    display: block;
 }
 
 footer {
