@@ -111,34 +111,30 @@ var Fm = {
         this.audio = new Audio()
         this.audio.autoplay = true
         this.$red = $('.selectorColor .red')
-        this.$black = $('.selectorColor .black')
+        this.$white = $('.selectorColor .white')
         this.$green = $('.selectorColor .green')
         this.$lyric = $('.lyric')
         this.$aquamarine = $('.selectorColor .aquamarine')
-
+        this.barWidth = this.$container.find('.bar').width()
         
 
         this.bind()
-        this.x()
+        this.updateSpeed()
         this.setColor()
         this.setColor1()
         this.setColor2()
         this.setColor3()
 
     },
-    x:function(){
+    updateSpeed:function(){
         var _this= this
         _this.$container.find('.bar').on('click',function(){
-        var x = event.offsetX
-        var barWidth = _this.$container.find('.bar').width()
-        var woo = Math.floor(x/barWidth*100)
+        var jumpWidth = event.offsetX
         _this.$container.find('.insideBar').css({
-            width: woo
+            width: jumpWidth
         })
-        wo = Math.floor(Math.floor(_this.audio.duration )*woo/100)
-        console.log(wo)
+        wo = Math.floor(_this.audio.duration )*(jumpWidth/_this.barWidth)
         _this.audio.currentTime = wo
-        _this.audio.play()
     })},
     bind:function(){
         var _this = this
@@ -193,7 +189,6 @@ _this.$container.find('.btn-play').on('click',function(){
             _this.song = ret['song'][0]
             _this.setMusic()
             _this.loadLyric()
-            console.log('123')
         })
     },
     loadLyric(){
@@ -235,30 +230,25 @@ _this.$container.find('.btn-play').on('click',function(){
         }
     },
     setColor(){
-        this.$black.click(function(){
-            this.$lyric.css({'color':'black'})
+        this.$white.click(function(){
+            this.$lyric.css({'color':'#ffffff'})
         }.bind(this))
     },
     setColor1(){
         this.$red.click(function(){
-            this.$lyric.css({'color':'rgb(253, 18, 18)'})
+            this.$lyric.css({'color':'#C20C0C'})
         }.bind(this))
-        console.log('red')
-
     },
   
     setColor2(){
         this.$green.click(function(){
-            this.$lyric.css({'color':'rgb(17, 236, 17)'})
+            this.$lyric.css({'color':'#09e179'})
         }.bind(this))
-        console.log('green')
-
     },
     setColor3(){
         this.$aquamarine.click(function(){
-            this.$lyric.css({'color':'aquamarine'})
+            this.$lyric.css({'color':'#01e5ff'})
         }.bind(this))
-        console.log('aquamarine')
     }
 }
 footer.init(footer)

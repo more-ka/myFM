@@ -11,6 +11,9 @@ body,
 section {
     height: 100%;
     overflow: hidden;
+    min-width: 700px;
+    min-height: 360px;
+    display: block;
 }
 
 main {
@@ -20,13 +23,13 @@ main {
 
 .bg {
     position: absolute;
-    top: -10px;
+    top: -50px;
     bottom: -50px;
-    left: -10px;
-    right: -10px;
+    left: -50px;
+    right: -50px;
     z-index: -1;
     background-image: url( //timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537030676108&di=8cbc7736e62e4ee6c13481f7e4665890&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F03087bf40ad162d93df71c261adfa9ec8a13cdeb.jpg);
-        filter: blur(5px);
+        filter: blur(32px);
     background-size: cover;
 }
 
@@ -47,6 +50,8 @@ main {
 .card {
     margin-left: 28vh;
     margin-right: 8vh;
+    min-width: 620px;
+    min-height: 280px;
 }
 
 .layout {
@@ -115,18 +120,19 @@ img {
 .right .tag {
     font-size: 3vh;
     background: rgb(28, 184, 150);
-    padding: 0em 0.8em;
+    padding: 0.2em 0.8em;
     cursor:default;
 }
 
 .right h1 {
     font-size: 6vh;
-    padding: 15px 0;
+    padding: 12px 0;
     cursor:default;
+    overflow: hidden;
 }
 
 .right .i {
-    margin-top: 8vh;
+    margin-top: 4vh;
     font-size: 3vh;
     margin-right: 10vh;
 }
@@ -136,9 +142,8 @@ img {
 }
 
 .right ul li {
-    flex: 1;
     margin-right: 2vh;
-    margin-left: 16vh;
+    margin-left: 4vw;
     cursor:default;
 }
 
@@ -146,8 +151,9 @@ img {
     margin-left: 0;
 }
 .right ul span{
-    margin-right:1vh;
+    margin-right:0;
     font-size: 4vh;
+    margin-right: 1vw;
 }
 .areaBar {
     width: auto;
@@ -171,7 +177,7 @@ img {
 
 .insideBar {
     height: 1vh;
-    width: 10%;
+    width: 0;
     border-radius: 0.5vh;
     transition: width .1s;
     background: white;
@@ -195,7 +201,7 @@ img {
     margin-top: 2vh;
     font-size: 3vh;
     height: 4vh;
-    color: rgb(8, 243, 8);
+    color: #31c27c;
     cursor: pointer;
     position: relative;
 }
@@ -216,16 +222,19 @@ img {
     margin-bottom: 1vh;
 }
 .right .lyric .selectorColor .aquamarine{
-    background: aquamarine;
+    background: #01e5ff;
 }
 .right .lyric .selectorColor .red{
-    background: rgb(253, 18, 18);
+    background: #C20C0C;
 }
-.right .lyric .selectorColor .black{
-    background: black;
+.right .lyric .selectorColor .white{
+    background: #ffffff;
 }
 .right .lyric .selectorColor .green{
-    background: rgb(8, 243, 8);
+    background: #09e179;
+}
+.right .lyric .selectorColor .white{
+    background: #ffffff;
 }
 .lyric p:hover + ol {
     display: block;
@@ -235,6 +244,8 @@ footer {
     height: 36vh;
     background: rgba(202, 191, 191, 0.3);
     overflow: hidden;
+    min-width: 700px;
+    min-height: 131px;
 }
 
 footer .layout {
