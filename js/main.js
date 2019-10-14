@@ -10,9 +10,6 @@ var EventCenter = {
 //     console.log(data)
 //   })
 //   EventCenter.fire('hello','你好')
-
-
-
 var footer = {
     init: function () {
         this.$footer = $('footer')
@@ -116,25 +113,34 @@ var Fm = {
         this.$lyric = $('.lyric')
         this.$aquamarine = $('.selectorColor .aquamarine')
         this.barWidth = this.$container.find('.bar').width()
+        this.isPlay = false
         
 
         this.bind()
+        this.initSpeed()
         this.updateSpeed()
-        this.setColor()
-        this.setColor1()
-        this.setColor2()
-        this.setColor3()
+        this.setBlueColor()
+        this.setRedColor()
+        this.setWhiteColor()
+        this.setGreenColor()
 
+    },
+    initSpeed:function(){
+        var _this = this
+        _this.$container.find('.time').text('0:00')
+        _this.$container.find('.lyric p').text('')
+        _this.$container.find('.insideBar').css({
+            width: 0
+        })
     },
     updateSpeed:function(){
         var _this= this
         _this.$container.find('.bar').on('click',function(){
         var jumpWidth = event.offsetX
+        _this.audio.currentTime = _this.audio.duration *(jumpWidth/_this.barWidth)
         _this.$container.find('.insideBar').css({
             width: jumpWidth
         })
-        wo = Math.floor(_this.audio.duration )*(jumpWidth/_this.barWidth)
-        _this.audio.currentTime = wo
     })},
     bind:function(){
         var _this = this
@@ -145,11 +151,17 @@ var Fm = {
                 _this.setMusic()
             })
         })
-        
         _this.$container.find('.btn-play').on('click',function(){
             if($(this).hasClass('icon-play')){
                 $(this).removeClass('icon-play').addClass('icon-pause')
-                _this.audio.play()
+                if(!this.isPlay){
+                    console.log('111');
+                    _this.loadMusic()
+                    this.isPlay = true
+                    
+                }else{
+                    _this.audio.play()
+                }
             }else{
                 $(this).removeClass('icon-pause').addClass('icon-play')
                 _this.audio.pause()
@@ -184,7 +196,8 @@ _this.$container.find('.btn-play').on('click',function(){
     },
     loadMusic(){
         var _this = this
-        $.getJSON('//jirenguapi.applinzi.com/fm/getSong.php',{channel:this.channelId})
+        _this.initSpeed()        
+        $.getJSON('//jirenguapi.applinzi.com/fm/getSong.php',{channel:_this.channelId?this.channelId:'public_tuijian_ktv'})
         .done(function(ret){
             _this.song = ret['song'][0]
             _this.setMusic()
@@ -220,7 +233,7 @@ _this.$container.find('.btn-play').on('click',function(){
     },
     updataStatus(){
         var min = Math.floor(this.audio.currentTime/60)
-        var second = Math.floor(this.audio.currentTime%60)+''
+        var second = Math.floor(this.audio.currentTime%60+1)+''
         second = second.length === 2?second:'0'+second
         this.$container.find('.time').text(min+':'+second)
         this.$container.find('.insideBar').css({width:this.audio.currentTime/this.audio.duration*100+'%'})
@@ -229,23 +242,23 @@ _this.$container.find('.btn-play').on('click',function(){
         this.$container.find('.lyric p').text(line)
         }
     },
-    setColor(){
+    setBlueColor(){
         this.$white.click(function(){
             this.$lyric.css({'color':'#ffffff'})
         }.bind(this))
     },
-    setColor1(){
+    setRedColor(){
         this.$red.click(function(){
             this.$lyric.css({'color':'#C20C0C'})
         }.bind(this))
     },
   
-    setColor2(){
+    setWhiteColor(){
         this.$green.click(function(){
             this.$lyric.css({'color':'#09e179'})
         }.bind(this))
     },
-    setColor3(){
+    setGreenColor(){
         this.$aquamarine.click(function(){
             this.$lyric.css({'color':'#01e5ff'})
         }.bind(this))
